@@ -116,11 +116,11 @@ Hey gabbi
     \end{tikzpicture}
     \\
     \begin{tikzpicture}
-        \node[circle, draw=black] (x-) {$x^-$};
-        \node[circle, draw=black,above = of x-] (x) {$x$};
-        \node[circle, draw=black,above = of x] (x+) {$x^+$};
-        \node[circle, draw=black,right = of x] (y) {$y$};
-        \node[circle, draw=black,above = of y] (y+) {$y^+$};
+        \node[circle, draw=black, minimum size=1.1cm] (x-) {$x^-$};
+        \node[circle, draw=black,above = of x-, minimum size=1.1cm] (x) {$x$};
+        \node[circle, draw=black,above = of x, minimum size=1.1cm] (x+) {$x^+$};
+        \node[circle, draw=black,right = of x, minimum size=1.1cm] (y) {$y$};
+        \node[circle, draw=black,above = of y, minimum size=1.1cm] (y+) {$y^+$};
 
         \path[->] (x+) edge [bend right=90,decorate,decoration=snake] node[left] {} (x-);
         \path[->] (x-) edge [] node[left] {} (x);
@@ -128,6 +128,33 @@ Hey gabbi
         \path[->] (y) edge [] node[left] {} (y+);
         \path[->] (y) edge [] node[left] {} (x+);
         \path[->] (y+) edge [bend left=90,decorate,decoration=snake,in=0, looseness=5] node[left] {} (y);
+    \end{tikzpicture}
+    \\
+    \begin{tikzpicture}
+        \node[circle, draw=black,minimum size=1.1cm] (x) {$x$};
+        \node[circle, draw=black,above = of x, minimum size=1.1cm] (x+) {$x^+$};
+        \node[circle, draw=black,right = of x, minimum size=1.1cm] (y) {$y$};
+        \node[circle, draw=black,above = of y, minimum size=1.1cm] (y+) {$y^+$};
+
+        \path[->] (x+) edge [bend right=90,decorate,decoration=snake] node[left] {} (x);
+        \path[->] (x) edge [] node[left] {} (x+);
+        \path[->] (y) edge [] node[left] {} (y+);
+        \path[->] (y) edge [] node[left] {} (x+);
+        \path[->] (x) edge [] node[left] {} (y+);
+        \path[->] (y+) edge [bend left=90,decorate,decoration=snake] node[left] {} (y);
+    \end{tikzpicture}
+    \\
+    \begin{tikzpicture}
+        \node[circle, draw=black,minimum size=2cm] (hi) {$H_i$};
+        \node[circle, draw=black,minimum size=2cm, below = 2cm of hi] (hj) {$H_j$};
+        \node[circle, draw=black,minimum size=2cm, below right = 0.5cm and 2cm of hi] (hk) {$H_k$};
+
+        \path[->] (hi) edge [bend left,red] node[left] {} (hk);
+        \path[->] (hk) edge [red,dashed] node[left] {} (hi);
+        \path[->] (hi) edge [bend right] node[left] {} (hj);
+        \path[->] (hj) edge [dashed] node[left] {} (hi);
+        \path[->] (hj) edge [bend right] node[left] {} (hk);
+        \path[->] (hk) edge [dashed] node[left] {} (hj);
     \end{tikzpicture}
 
 \end{document}
