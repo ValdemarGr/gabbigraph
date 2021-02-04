@@ -1,0 +1,124 @@
+\documentclass[11pt,oneside,a4paper]{report}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{amsfonts}
+\usepackage{mdframed}
+\usepackage{bussproofs}
+\usepackage{standalone}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{float}
+\usepackage[english]{babel}
+\usepackage{cleveref}
+\usepackage{amsthm}
+\usepackage{fancybox}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usetikzlibrary{trees,arrows,positioning}
+
+\theoremstyle{plain}
+\newtheorem{lemma}[chapter]{Lemma}
+
+\newtheoremstyle{case}{}{}{}{}{}{:}{ }{}
+\theoremstyle{case}
+\newtheorem{case}{Case}
+
+\newenvironment{pcases}[0]{
+    \setcounter{case}{0}
+    \begin{list}{}{}
+}{\end{list}}
+
+\newcommand{\pcase}[1]{
+    \item \begin{case}
+            #1
+    \end{case}
+}
+
+
+\mdfdefinestyle{style1}{leftmargin=-0.5cm,rightmargin=-0.5cm,skipbelow=1cm,skipabove=1cm,
+   innertopmargin=0pt}
+\mdfdefinestyle{style2}{leftmargin=-0.5cm,rightmargin=-0.5cm,skipbelow=1cm,skipabove=1cm,
+   innertopmargin=0pt}
+\mdfdefinestyle{bigbox}{leftmargin=-2cm,rightmargin=-2cm,skipbelow=1cm,skipabove=1cm,
+   innertopmargin=0pt}
+
+\makeatletter
+\newenvironment{CenteredBox}{% 
+\begin{Sbox}}{% Save the content in a box
+\end{Sbox}\centerline{\parbox{\wd\@Sbox}{\TheSbox}}}% And output it centered
+\makeatother
+\theoremstyle{definition}
+\newtheorem{exmp}{Example}[section]
+\newtheorem{remark}{Remark}[section]
+
+\def\exmpautorefname{Example}
+\def\remarkautorefname{Remark}
+\def\caseautorefname{Case}
+
+\lstset{
+    basicstyle=\ttfamily,
+    numbers=left,
+    showstringspaces=false,
+    tabsize=1,
+    frame=tbrl
+}
+
+\newfloat{lstfloat}{htbp}{lop}
+
+
+\begin{document}
+\begin{titlepage}
+	\begin{center}
+		\vspace*{1cm}
+		\huge{Aspects of efficiency in functional programming languages}
+
+		\vspace*{0.5cm}
+		\large{by}
+
+		\vspace{0.5cm}
+		\Large{Samuel Valdemar Grange}
+
+		\vspace*{0.5cm}
+		\normalsize{supervised by}
+
+		\vspace{0.5cm}
+		\large{Prof. Kim Skak Larsen}
+
+		\vfill
+
+		\vspace*{0.7cm}
+		\includegraphics[width=0.4\textwidth]{sdulogo}
+
+		\vspace*{1cm}
+		\MakeUppercase{University of southern Denmark}
+
+		\vspace*{0.3cm}
+		\MakeUppercase{Department of mathematics and computer science}
+
+		\vspace*{0.3cm}
+		\large{Master's thesis in Computer Science}
+	\end{center}
+
+\end{titlepage}
+
+\tableofcontents
+
+\part{Compilers and languages}
+
+\input{prog/prog}
+
+\input{validation/validation}
+
+\input{evaluation/evaluation}
+
+\bibliography{bib.bib}{}
+\bibliographystyle{plain}
+
+\input{appendix/appendix}
+
+\end{document}
