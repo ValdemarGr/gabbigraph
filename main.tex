@@ -19,7 +19,7 @@
 \usepackage{subcaption}
 \usepackage{tikz}
 \usepackage{pgfplots}
-\usetikzlibrary{trees,arrows,positioning}
+\usetikzlibrary{decorations.pathmorphing,trees,arrows,positioning}
 
 \theoremstyle{plain}
 \newtheorem{lemma}[chapter]{Lemma}
@@ -72,53 +72,62 @@
 
 
 \begin{document}
-\begin{titlepage}
-	\begin{center}
-		\vspace*{1cm}
-		\huge{Aspects of efficiency in functional programming languages}
 
-		\vspace*{0.5cm}
-		\large{by}
+Hey gabbi
 
-		\vspace{0.5cm}
-		\Large{Samuel Valdemar Grange}
+    \begin{tikzpicture}
+        \node[circle, draw=black, minimum size=2cm] (x1) {$x_1$};
+        \node[circle, draw=black,left = of x1] (u1) {$u_1$};
+        \node[circle, draw=black,above = of u1] (u2) {$u_2$};
+        \node[circle, draw=black,below = of u1] (up) {$u_p$};
+        \node[circle, draw=black,above left =0cm and 1cm of up] (ui) {$u_i$};
 
-		\vspace*{0.5cm}
-		\normalsize{supervised by}
+        \path[->] (x1) edge [bend left] node[left] {} (u1);
+        \path[->] (u1) edge [bend left] node[left] {} (x1);
+        \path[->] (u1) edge node[left] {} (u2);
+        \path[->] (up) edge node[left] {} (u1);
+        \path[->] (u2) edge [bend right=58, looseness=1.4,decorate,decoration=snake] node[left] {} (ui);
+        \path[->] (ui) edge [bend right=30, looseness=1.2,decorate,decoration=snake] node[left] {} (up);
+        \path[-] (x1) edge [bend left=90,looseness=1.5] node[left] {} (ui);
+    \end{tikzpicture}
+    \\
+    \begin{tikzpicture}
+        \node[circle, draw=black, minimum size=2cm] (yi) {$y_i$};
+        \node[circle, draw=black, minimum size=2cm, above left = of yi] (xi) {$x_i$};
+        \node[circle, draw=black, left = 2cm of yi] (ui) {$u_i$};
+        \node[circle, draw=black, below left = 0.8cm and 1cm of ui] (uj) {$u_j$};
+        \node[circle, draw=black, above right = 0.6cm and 0.1cm of uj] (uv) {};
+        \node[circle, draw=black, below left = 2cm and -0.2cm of ui] (uk) {};
+        \node[circle, draw=black, minimum size=2cm, above left = of uj] (xj) {$x_j$};
+        \node[right = 0.3cm of uj] (C) {$C$};
 
-		\vspace{0.5cm}
-		\large{Prof. Kim Skak Larsen}
+        \path[->] (ui) edge [] node[left] {} (xi);
+        \path[->] (yi) edge [] node[left] {} (ui);
+        \path[->] (xj) edge [bend right] node[left] {} (uj);
+        \path[->] (uj) edge [bend right] node[left] {} (xj);
+        \path[->] (ui) edge [bend right,decorate,decoration=snake] node[left] {} (uv);
+        \path[->] (uv) edge [bend right,decorate,decoration=snake] node[left] {} (uj);
+        \path[->] (uj) edge [bend right,decorate,decoration=snake] node[left] {} (uk);
+        \path[->] (uk) edge [bend right,decorate,decoration=snake] node[left] {} (ui);
+        \path[->] (uk) edge [bend right,blue] node[left] {} (yi);
+        \path[->] (xi) edge [bend right=50,blue] node[left] {} (uv);
+        \path[->] (xi) edge [bend right=50,red] node[left] {} (xj);
+        \path[->] (xj) edge [bend left=90,red,in=145,out=38,looseness=1.2] node[left] {} (xi);
+    \end{tikzpicture}
+    \\
+    \begin{tikzpicture}
+        \node[circle, draw=black] (x-) {$x^-$};
+        \node[circle, draw=black,above = of x-] (x) {$x$};
+        \node[circle, draw=black,above = of x] (x+) {$x^+$};
+        \node[circle, draw=black,right = of x] (y) {$y$};
+        \node[circle, draw=black,above = of y] (y+) {$y^+$};
 
-		\vfill
-
-		\vspace*{0.7cm}
-		\includegraphics[width=0.4\textwidth]{sdulogo}
-
-		\vspace*{1cm}
-		\MakeUppercase{University of southern Denmark}
-
-		\vspace*{0.3cm}
-		\MakeUppercase{Department of mathematics and computer science}
-
-		\vspace*{0.3cm}
-		\large{Master's thesis in Computer Science}
-	\end{center}
-
-\end{titlepage}
-
-\tableofcontents
-
-\part{Compilers and languages}
-
-\input{prog/prog}
-
-\input{validation/validation}
-
-\input{evaluation/evaluation}
-
-\bibliography{bib.bib}{}
-\bibliographystyle{plain}
-
-\input{appendix/appendix}
+        \path[->] (x+) edge [bend right=90,decorate,decoration=snake] node[left] {} (x-);
+        \path[->] (x-) edge [] node[left] {} (x);
+        \path[->] (x) edge [] node[left] {} (x+);
+        \path[->] (y) edge [] node[left] {} (y+);
+        \path[->] (y) edge [] node[left] {} (x+);
+        \path[->] (y+) edge [bend left=90,decorate,decoration=snake,in=0, looseness=5] node[left] {} (y);
+    \end{tikzpicture}
 
 \end{document}
