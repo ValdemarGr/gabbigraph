@@ -156,5 +156,18 @@ Hey gabbi
         \path[->] (hj) edge [bend right] node[left] {} (hk);
         \path[->] (hk) edge [dashed] node[left] {} (hj);
     \end{tikzpicture}
+    \\
+    \begin{tikzpicture}
+        \node[circle, draw=black,minimum size=2cm] (hi) {$H_i$};
+        \node[circle, draw=black,minimum size=2cm, below = 2cm of hi] (hj) {};
+        \node[circle, draw=black,minimum size=2cm, below left = 0.5cm and 2cm of hi] (hk) {};
+
+        \path[->] (hi) edge [bend right,red] node[left] {} (hk);
+        \path[->] (hk) edge [red,dashed] node[left] {} (hi);
+        \path[->] (hi) edge [bend left] node[left] {} (hj);
+        \path[->] (hj) edge [dashed] node[left] {} (hi);
+        \path[->] (hj) edge [bend left] node[left] {} (hk);
+        \path[->] (hk) edge [dashed] node[left] {} (hj);
+    \end{tikzpicture}
 
 \end{document}
